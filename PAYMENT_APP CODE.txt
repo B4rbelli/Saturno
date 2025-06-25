@@ -1,0 +1,19 @@
+Inicia o ambiente de virtualização:
+source venv/bin/activate
+
+Recarrega o FastAPI:
+uvicorn app.main:app --reload
+uvicorn app.main:app --reload --port 8001
+
+Subir container Docker:
+docker-compose up --build
+
+Reiniciar container Docker:
+docker-compose restart app
+
+Ver logs do container:
+docker-compose logs app
+
+Subir React + Vite:
+npm run dev
+

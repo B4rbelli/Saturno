@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    container_name: pagamento_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/pagamentos
+      - STRIPE_SECRET_KEY=sua_chave_stripe_aqui
+
+  db:
+    image: postgres:15
+    container_name: pagamento_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: pagamentos
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
